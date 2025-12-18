@@ -38,14 +38,21 @@ export function SimplePlateEditor() {
     value: activeNote?.content || [{ type: 'p', children: [{ text: '' }] }],
   });
 
+  // Auto-save debounced
   useEffect(() => {
-    if (!activeNote) return;
+    if (!activeNote || !editor) return;
+    
     const timeoutId = setTimeout(() => {
-      const content = editor.children;
-      updateNote(activeNote.id, { content });
+      try {
+        const content = editor.children;
+        updateNote(activeNote.id, { content });
+      } catch (error) {
+        console.error('Error saving note:', error);
+      }
     }, 1000);
+    
     return () => clearTimeout(timeoutId);
-  }, [editor.children, activeNote, updateNote]);
+  }, [editor?.children, activeNote, updateNote]);
 
   if (!activeNote) {
     return (
