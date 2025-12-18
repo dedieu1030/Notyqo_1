@@ -22,11 +22,17 @@ export default defineConfig({
   },
   build: {
     rollupOptions: {
+      input: {
+        main: path.resolve(__dirname, 'index.html'),
+        'content-script': path.resolve(__dirname, 'src/content/quick-note.tsx'),
+      },
       output: {
-        manualChunks: {
-          'react-vendor': ['react', 'react-dom'],
-          'plate-vendor': ['platejs'],
-        }
+        entryFileNames: (chunkInfo) => {
+          return chunkInfo.name === 'content-script' 
+            ? 'content-script.js'
+            : 'assets/[name]-[hash].js';
+        },
+        manualChunks: undefined,
       }
     }
   }
