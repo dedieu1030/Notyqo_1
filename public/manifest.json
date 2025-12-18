@@ -1,0 +1,26 @@
+{
+  "manifest_version": 3,
+  "name": "Notyqo",
+  "version": "1.0.0",
+  "description": "Dual-space note-taking extension with rich text editing",
+  "permissions": [
+    "storage",
+    "activeTab",
+    "scripting"
+  ],
+  "action": {
+    "default_popup": "index.html",
+    "default_title": "Notyqo - Open Full App"
+  },
+  "icons": {
+    "16": "vite.svg",
+    "48": "vite.svg",
+    "128": "vite.svg"
+  },
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": ["src/content/quick-note.tsx"]
+    }
+  ]
+}
