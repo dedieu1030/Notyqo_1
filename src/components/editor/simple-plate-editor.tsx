@@ -1,4 +1,4 @@
-import { Plate, usePlateEditor } from 'platejs/react';
+import { Plate, PlateContent, usePlateEditor } from 'platejs/react';
 import { ParagraphPlugin } from 'platejs/react';
 import { 
   BlockquotePlugin, 
@@ -65,7 +65,10 @@ export function SimplePlateEditor() {
           className="mb-4 w-full border-none bg-transparent text-3xl font-bold outline-none"
           placeholder="Untitled"
         />
-        <div className="prose dark:prose-invert max-w-none" />
+        <PlateContent 
+          className="prose dark:prose-invert max-w-none focus:outline-none" 
+          placeholder="Start writing..."
+        />
       </div>
     </Plate>
   );
